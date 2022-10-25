@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/home';
 import Register from './pages/register';
 import Login from './pages/login';
+import NavBar from './components/navBar';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 
 
@@ -9,6 +12,7 @@ const App = () => {
   return (
     <>
       <Router>
+        <NavBar />
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -18,6 +22,7 @@ const App = () => {
         </div>
 
       </Router>
+      <ToastContainer />
     </>
   );
 }
