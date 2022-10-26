@@ -14,7 +14,6 @@ const NavBar = () => {
                 </div>
 
                 <div className="hidden md:flex space-x-6">
-                    <a href="/" className="hover:text-darkGrayishBlue">Home</a>
                     <a href="/login" className="hover:text-darkGrayishBlue flex items-center gap-1"><FaSignInAlt /> Login</a>
                     <a href="/register" className="hover:text-darkGrayishBlue flex items-center gap-1"><FaUser /> Register</a>
                 </div>
