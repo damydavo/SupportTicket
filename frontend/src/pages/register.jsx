@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { toast } from 'react-toastify'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { register } from "../features/auth/authSlice";
+import { register, reset } from "../features/auth/authSlice";
 
 
 const Register = () => {
@@ -18,6 +18,8 @@ const Register = () => {
     const { name, email, password, confirmPassword } = formData
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const { user, isSuccess, isError, isLoading, message } = useSelector(state => state.auth)
 
     useEffect(() => {
@@ -26,7 +28,13 @@ const Register = () => {
         }
 
         //redirect if it's successful
-    })
+        if (isSuccess || user) {
+            navigate('/')
+        }
+
+        dispatch(reset())
+
+    }, [isError, isSuccess, user, navigate, dispatch, message])
 
     const handleChange = (e) => {
         setFormData((prevState) => ({

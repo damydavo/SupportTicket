@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import { toast } from 'react-toastify'
-
+import Spinner from "../components/assets/spinner";
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from "../features/auth/authSlice";
+import { login, reset } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 
-const Register = () => {
+const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -14,14 +15,30 @@ const Register = () => {
 
     const { email, password } = formData
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { user, isSuccess, isLoading, message } = useSelector(state => state.auth)
+    const { user, isSuccess, isLoading, isError, message } = useSelector(state => state.auth)
 
     const handleChange = (e) => {
         setFormData((prevState) => ({
             ...prevState, [e.target.name]: e.target.value,
         }))
     }
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message)
+        }
+
+        //redirect if it's successful
+        if (isSuccess || user) {
+            navigate('/')
+        }
+
+        dispatch(reset())
+
+    }, [isError, isSuccess, user, navigate, dispatch, isLoading, message])
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -33,7 +50,12 @@ const Register = () => {
         dispatch(login(userData))
     }
 
+    if (isLoading) {
+        return <Spinner />
+    }
+
     return (
+
         <>
             <div className="text-center">
                 <h4 className="flex justify-center mt-6 mb-2 text-2xl font-semibold gap-1 items-center"><FaSignInAlt />Sign In</h4>
@@ -72,4 +94,4 @@ const Register = () => {
     );
 }
 
-export default Register;
+export default Login;
