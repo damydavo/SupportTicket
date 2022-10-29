@@ -108,7 +108,7 @@ const Register = () => {
                             placeholder="Confirm your password"
                             className="mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 " />
                     </label>
-                    <button className="px-4 py-2 w-full text-sm text-dark font-semibold rounded-lg border border-purple-200 bg-gray-400  hover:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2">Register</button>
+                    <button className="px-4 py-2 w-full text-sm font-semibold rounded-lg border border-purple-200 bg-black text-white hover:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2">Register</button>
 
                 </form>
             </section>

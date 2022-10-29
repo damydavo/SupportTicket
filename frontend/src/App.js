@@ -5,6 +5,7 @@ import Login from './pages/login';
 import NavBar from './components/navBar';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
+import NewTicket from './pages/newTicket';
 
 
 
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/new-ticket" element={<NewTicket />} />
           </Routes>
         </div>
 

@@ -59,7 +59,7 @@ const Login = () => {
         <>
             <div className="text-center">
                 <h4 className="flex justify-center mt-6 mb-2 text-2xl font-semibold gap-1 items-center"><FaSignInAlt />Sign In</h4>
-                <p className="flex justify-center font-semibold tracking-tight text-md text-darkGrayishBlue">Please create an account</p>
+                <p className="flex justify-center font-semibold tracking-tight text-md text-darkGrayishBlue">Please Sign in</p>
 
             </div>
             <section className="flex justify-center items-center mt-4">
@@ -85,7 +85,7 @@ const Login = () => {
                             name="password"
                             className="mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 " />
                     </label>
-                    <button className="px-4 py-2 w-full text-sm text-dark font-semibold rounded-lg border border-purple-200 bg-gray-400  hover:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2">Login</button>
+                    <button className="px-4 py-2 w-full text-sm text-dark font-semibold rounded-lg border border-purple-200 bg-black text-white  hover:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2">Login</button>
 
                 </form>
             </section>
