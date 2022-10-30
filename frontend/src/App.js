@@ -6,8 +6,7 @@ import NavBar from './components/navBar';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import NewTicket from './pages/newTicket';
-
-
+import PrivateRoute from './components/privateRoute';
 
 const App = () => {
   return (
@@ -19,7 +18,9 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/new-ticket" element={<NewTicket />} />
+            <Route path="/new-ticket" element={<PrivateRoute />}>
+              <Route path="/new-ticket" element={<NewTicket />} />
+            </Route>
           </Routes>
         </div>
 
