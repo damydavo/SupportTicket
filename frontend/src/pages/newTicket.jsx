@@ -1,22 +1,50 @@
-import { useState } from "react";
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createTicket, reset } from "../features/ticket/ticketSlice";
+import { toast } from 'react-toastify';
+import Spinner from './../components/assets/spinner';
+import BackButton from './../components/backButton';
 
 
 const NewTicket = () => {
     const { user } = useSelector((state) => state.auth)
+    const { isError, isLoading, isSuccess, message } = useSelector((state) => state.ticket)
+
     const [name] = useState(user.name)
     const [email] = useState(user.email)
     const [product, setProduct] = useState('')
     const [description, setDescription] = useState('')
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message)
+        }
+        if (isSuccess) {
+            dispatch(reset())
+            navigate('/tickets')
+        }
+        dispatch(reset())
+    }, [isLoading, message, isError, navigate, dispatch, isSuccess])
+
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        dispatch(createTicket({
+            product,
+            description
+        }))
     }
+
+    if (isLoading) return <Spinner />
 
     return (
         <>
-            <div className="mx-auto text-center font-bold mt-8 mb-6">
+            <div className="mx-auto text-center font-bold mt-4 mb-6">
+                <BackButton url='/' />
+
                 <h4 className="text-3xl">Create a New ticket</h4>
                 <p className="font-sem33ibold">Please fill out the form below</p>
             </div>
